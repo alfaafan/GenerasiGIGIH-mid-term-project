@@ -1,0 +1,21 @@
+{
+  "name": "generasigigih-mid-term-project",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/alfaafan/GenerasiGIGIH-mid-term-project.git",
+  "author": "Alfaafan Yusufa Achmad <yusufa0509@gmail.com>",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon index"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongodb": "^5.7.0",
+    "mongoose": "^7.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
