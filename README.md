@@ -22,7 +22,8 @@ Video object:
 ```
 {
   id: objectId
-  thumbnail_url: string
+  thumbnail_url: String
+  content_url: String
 }
 ```
 
@@ -33,9 +34,9 @@ Product object:
 ```
 {
     id: objectId
-    product_url: string
-    title: string
-    price: number
+    title: String
+    price: Number
+    product_url: String
 }
 ```
 
@@ -45,9 +46,21 @@ Comment object:
 
 ```
 {
-    username: string
-    comment: string
-    timetamp: datetime
+    user_id: objectId
+    content: String
+    timestamp: Date
+}
+```
+
+## Users
+
+Users object:
+
+```
+{
+  id: objectId
+  username: String
+  picture_url: String
 }
 ```
 
