@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 import Video from "../models/videoModel.js";
 
 export const getAllVideos = async (req, res) => {

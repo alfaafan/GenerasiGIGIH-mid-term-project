@@ -1,7 +1,10 @@
-import mongoose, { SchemaType } from "mongoose";
+import mongoose from "mongoose";
 const { Schema, model } = mongoose;
 
 const productSchema = new Schema({
+  videoId: {
+    type: Schema.Types.ObjectId,
+  },
   title: {
     type: Schema.Types.String,
     required: true,

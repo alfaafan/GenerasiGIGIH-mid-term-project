@@ -1,11 +1,8 @@
 import express from "express";
+import { getAllProducts, getProcuct } from "../controllers/productController.js";
 const router = express.Router();
 
-router.get("/products", (req, res) => {
-  res.send("Products");
-});
-router.get("/products/:productId", (req, res) => {
-  res.send("Products with Id");
-});
+router.get("/videos/:videoId/products", getAllProducts);
+router.get("/videos/:videoId/products/:productId", getProcuct);
 
 export { router };

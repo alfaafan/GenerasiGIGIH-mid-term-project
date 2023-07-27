@@ -4,8 +4,8 @@ const { Schema, model } = mongoose;
 const commentSchema = new Schema(
   {
     videoId: {
-      type: Schema.Types.ObjectId,
-      ref: "videos",
+      type: Schema.Types.String,
+      ref: "Videos",
     },
     username: {
       type: Schema.Types.String,

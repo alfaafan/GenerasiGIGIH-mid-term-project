@@ -269,7 +269,7 @@ GET /videos/${videoId}/products
 #### Get all comments
 
 ```http
-GET /videos/${videoId}/comments
+GET /api/videos/${videoId}/comments
 ```
 
 ##### Response example:
@@ -289,15 +289,6 @@ GET /videos/${videoId}/comments
 }
 ```
 
-###### Error (code 404):
-
-```json
-{
-  "status": 404,
-  "message": "Comments not found"
-}
-```
-
 ###### Error (code 500):
 
 ```json
@@ -312,7 +303,7 @@ GET /videos/${videoId}/comments
 #### Post a comment
 
 ```http
-POST /videos/${videoId}/comments
+POST /api/videos/${videoId}/comments
 ```
 
 | Body       | Type     | Description                 |
@@ -329,7 +320,7 @@ POST /videos/${videoId}/comments
   "status": 200,
   "message": "Success",
   "data": {
-    "_id": ObjectId,
+    "_id": String,
     "username": "John Doe",
     "content": "This is a comment",
     "timestamp": 2023-07-26T14:31:33.504Z
@@ -360,12 +351,12 @@ POST /videos/${videoId}/comments
 #### Delete a comment
 
 ```http
-DELETE /videos/${videoId}/comments
+DELETE /api/videos/${videoId}/comments/${commentId}
 ```
 
-| Parameter | Type       | Description                           |
-| :-------- | :--------- | :------------------------------------ |
-| `_id`     | `objectId` | **Required**. id of comment to delete |
+| Parameter | Type     | Description                           |
+| :-------- | :------- | :------------------------------------ |
+| `_id`     | `String` | **Required**. id of comment to delete |
 
 ##### Response example:
 
@@ -373,7 +364,7 @@ DELETE /videos/${videoId}/comments
 
 ```json
 {
-  "status": 204,
+  "status": 200,
   "message": "Comment deleted successfully"
 }
 ```
@@ -383,7 +374,7 @@ DELETE /videos/${videoId}/comments
 ```json
 {
   "status": 404,
-  "message": "Comments not found"
+  "message": "Comment not found"
 }
 ```
 

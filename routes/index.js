@@ -5,7 +5,7 @@ import { router as productsRouter } from "./productRouter.js";
 import { router as commentsRouter } from "./commentRouter.js";
 
 router.use("/videos", videoRouter);
-router.use("/videos/:videoId", productsRouter);
-router.use("/videos/:videoId", commentsRouter);
+router.use(productsRouter);
+router.use(commentsRouter);
 
 export default router;
