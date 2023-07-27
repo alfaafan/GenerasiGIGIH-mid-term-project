@@ -22,8 +22,7 @@ Video object:
 ```
 {
   id: objectId
-  thumbnail_url: String
-  content_url: String
+  thumbnailUrl: String
 }
 ```
 
@@ -34,9 +33,10 @@ Product object:
 ```
 {
     id: objectId
+    videoId: String
     title: String
     price: Number
-    product_url: String
+    productUrl: String
 }
 ```
 
@@ -46,9 +46,12 @@ Comment object:
 
 ```
 {
-    user_id: objectId
+    id: objectId
+    videoId: String
+    username: String
     content: String
-    timestamp: Date
+    createdAt: Date
+    updatedAt: Date
 }
 ```
 
@@ -60,10 +63,339 @@ Users object:
 {
   id: objectId
   username: String
-  picture_url: String
+  pictureUrl: String
 }
 ```
 
 # API Structure
+
+## Response Structure
+
+| Response | Type     | Description \*\*\*\*          |
+| :------- | :------- | :---------------------------- |
+| status   | `Number` | HTTP response status code     |
+| message  | `String` | Describe the response message |
+| data     | `any`    | Data that returned            |
+
+## API Reference
+
+### /videos
+
+#### Get all videos
+
+```http
+  GET /videos
+```
+
+##### Response example:
+
+###### Success:
+
+```json
+{
+  "status": 200,
+  "message": "Success",
+  "data": [
+      {<VideoObject>},
+      {<VideoObject>},
+      {<VideoObject>},
+    ]
+}
+```
+
+###### Error (code 404):
+
+```json
+{
+  "status": 404,
+  "message": "Videos not found"
+}
+```
+
+###### Error (code 500):
+
+```json
+{
+  "status": 500,
+  "message": "Internal server error"
+}
+```
+
+---
+
+#### Get a video
+
+```http
+  GET /videos/${id}
+```
+
+| Parameter | Type       | Description                        |
+| :-------- | :--------- | :--------------------------------- |
+| `_id`     | `objectId` | **Required**. Id of video to fetch |
+
+##### Response example:
+
+###### Success:
+
+```json
+{
+  "status": 200,
+  "message": "Success",
+  "data": {
+    "_id": ObjectId,
+    "thumbnailUrl": "www.example.com",
+  }
+}
+```
+
+###### Error (code 404):
+
+```json
+{
+  "status": 404,
+  "message": "Video not found"
+}
+```
+
+###### Error (code 500):
+
+```json
+{
+  "status": 500,
+  "message": "Internal server error"
+}
+```
+
+---
+
+### /products
+
+#### Get all products
+
+```http
+GET /videos/${videoId}/products
+```
+
+| Parameter | Type     | Description                          |
+| :-------- | :------- | :----------------------------------- |
+| `videoId` | `String` | **Required**. Id of product to fetch |
+
+##### Response example:
+
+###### Success:
+
+```json
+{
+  "status": 200,
+  "message": "Success",
+  "data": [
+      {<productsObject>},
+      {<productsObject>},
+      {<productsObject>},
+    ]
+
+}
+```
+
+###### Error (code 404):
+
+```json
+{
+  "status": 404,
+  "message": "Products not found"
+}
+```
+
+###### Error (code 500):
+
+```json
+{
+  "status": 500,
+  "message": "Internal server error"
+}
+```
+
+---
+
+#### Get a product
+
+```http
+  GET /videos/${videoId}/products/${id}
+```
+
+| Parameter | Type       | Description                          |
+| :-------- | :--------- | :----------------------------------- |
+| `_id`     | `objectId` | **Required**. Id of product to fetch |
+
+##### Response example:
+
+###### Success:
+
+```json
+{
+  "status": 200,
+  "message": "Success",
+  "data": {
+    "_id": ObjectId,
+    "title": "T-Shirt Oversize",
+    "Prize": 70000,
+    "product_url": "www.example.com/products/23141"
+  }
+}
+```
+
+###### Error (code 404):
+
+```json
+{
+  "status": 404,
+  "message": "Product not found"
+}
+```
+
+###### Error (code 500):
+
+```json
+{
+  "status": 500,
+  "message": "Internal server error"
+}
+```
+
+---
+
+### /comments
+
+#### Get all comments
+
+```http
+GET /videos/${videoId}/comments
+```
+
+##### Response example:
+
+###### Success:
+
+```json
+{
+  "status": 200,
+  "message": "Success",
+  "data": [
+      {<commentObject>},
+      {<commentObject>},
+      {<commentObject>},
+    ]
+
+}
+```
+
+###### Error (code 404):
+
+```json
+{
+  "status": 404,
+  "message": "Comments not found"
+}
+```
+
+###### Error (code 500):
+
+```json
+{
+  "status": 500,
+  "message": "Internal server error"
+}
+```
+
+---
+
+#### Post a comment
+
+```http
+POST /videos/${videoId}/comments
+```
+
+| Body       | Type     | Description                 |
+| :--------- | :------- | :-------------------------- |
+| `content`  | `String` | **Required**. Your comment  |
+| `username` | `String` | **Required**. Your username |
+
+##### Response example:
+
+###### Success:
+
+```json
+{
+  "status": 200,
+  "message": "Success",
+  "data": {
+    "_id": ObjectId,
+    "username": "John Doe",
+    "content": "This is a comment",
+    "timestamp": 2023-07-26T14:31:33.504Z
+  }
+}
+```
+
+###### Error (code 400):
+
+```json
+{
+  "status": 400,
+  "message": "username and content are required"
+}
+```
+
+###### Error (code 500):
+
+```json
+{
+  "status": 500,
+  "message": "Internal server error"
+}
+```
+
+---
+
+#### Delete a comment
+
+```http
+DELETE /videos/${videoId}/comments
+```
+
+| Parameter | Type       | Description                           |
+| :-------- | :--------- | :------------------------------------ |
+| `_id`     | `objectId` | **Required**. id of comment to delete |
+
+##### Response example:
+
+###### Success:
+
+```json
+{
+  "status": 204,
+  "message": "Comment deleted successfully"
+}
+```
+
+###### Error (code 404):
+
+```json
+{
+  "status": 404,
+  "message": "Comments not found"
+}
+```
+
+###### Error (code 500):
+
+```json
+{
+  "status": 500,
+  "message": "Internal server error"
+}
+```
+
+---
 
 # How to Run

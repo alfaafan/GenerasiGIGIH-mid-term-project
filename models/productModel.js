@@ -10,10 +10,11 @@ const productSchema = new Schema({
     type: Schema.Types.Number,
     required: true,
   },
-  product_url: {
+  productUrl: {
     type: Schema.Types.String,
     required: true,
   },
 });
 
-export default model("products", productSchema);
+const Product = model("products", productSchema);
+export default Product;

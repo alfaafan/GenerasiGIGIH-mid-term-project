@@ -1,18 +1,21 @@
 import mongoose from "mongoose";
 const { Schema, model } = mongoose;
 
-const commentSchema = new Schema({
-  user_id: {
-    type: Schema.Types.ObjectId,
-    required: true,
+const commentSchema = new Schema(
+  {
+    videoId: {
+      type: Schema.Types.ObjectId,
+      ref: "videos",
+    },
+    username: {
+      type: Schema.Types.String,
+    },
+    content: {
+      type: Schema.Types.String,
+    },
   },
-  content: {
-    type: Schema.Types.String,
-  },
-  timestamp: {
-    type: Schema.Types.Date,
-    required: true,
-  }
-});
+  { timestamps: true }
+);
 
-export default model("comments", commentSchema);
+const Comment = model("comments", commentSchema);
+export default Comment;

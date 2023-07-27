@@ -6,9 +6,10 @@ const userSchema = new Schema({
     type: Schema.Types.String,
     required: true,
   },
-  picture_url: {
+  pictureUrl: {
     type: Schema.Types.String,
   },
 });
 
-export default model("users", userSchema);
+const User = model("users", userSchema);
+export default User;
