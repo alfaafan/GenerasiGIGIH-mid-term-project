@@ -45,3 +45,30 @@ export const getProcuct = async (req, res) => {
     res.status(500).json({ status: 500, message: e.message });
   }
 };
+
+export const createProduct = async (req, res) => {
+  try {
+    const product = {
+      videoId: req.params.videoId,
+      title: req.body.title,
+      price: req.body.price,
+      productUrl: req.body.productUrl,
+    };
+
+    if (!product.title || !product.price || !product.productUrl) {
+      return res.status(400).json({
+        status: 400,
+        message: "title, price, and thumbnailUrl are required",
+      });
+    }
+
+    const newProduct = await new Product(product).save();
+    res.status(200).json({
+      status: 200,
+      message: "Success",
+      data: newProduct,
+    });
+  } catch (e) {
+    res.status(500).json({ status: 500, message: e.message });
+  }
+};

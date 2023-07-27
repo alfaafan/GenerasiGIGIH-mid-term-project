@@ -84,7 +84,7 @@ Users object:
 #### Get all videos
 
 ```http
-  GET /videos
+  GET /api/videos
 ```
 
 ##### Response example:
@@ -126,7 +126,7 @@ Users object:
 #### Get a video
 
 ```http
-  GET /videos/${id}
+  GET /api/videos/${id}
 ```
 
 | Parameter | Type       | Description                        |
@@ -168,12 +168,24 @@ Users object:
 
 ---
 
+#### Post a video
+
+```http
+POST /api/videos
+```
+
+| Body           | Type     | Description                                     |
+| :------------- | :------- | :---------------------------------------------- |
+| `thumbnailUrl` | `String` | **Required**. Thumbnail URL of product to fetch |
+
+---
+
 ### /products
 
 #### Get all products
 
 ```http
-GET /videos/${videoId}/products
+GET /api/videos/${videoId}/products
 ```
 
 | Parameter | Type     | Description                          |
@@ -220,7 +232,7 @@ GET /videos/${videoId}/products
 #### Get a product
 
 ```http
-  GET /videos/${videoId}/products/${id}
+  GET /api/videos/${videoId}/products/${id}
 ```
 
 | Parameter | Type       | Description                          |
@@ -238,8 +250,8 @@ GET /videos/${videoId}/products
   "data": {
     "_id": ObjectId,
     "title": "T-Shirt Oversize",
-    "Prize": 70000,
-    "product_url": "www.example.com/products/23141"
+    "Price": 70000,
+    "productUrl": "www.example.com/products/23141"
   }
 }
 ```
@@ -261,6 +273,20 @@ GET /videos/${videoId}/products
   "message": "Internal server error"
 }
 ```
+
+---
+
+#### Post a product
+
+```http
+POST /api/videos/${videoId}/products/
+```
+
+| Body         | Type     | Description                                |
+| :----------- | :------- | :----------------------------------------- |
+| `title`      | `String` | **Required**. the title of product to post |
+| `price`      | `Number` | **Required**. the price of product to post |
+| `productUrl` | `String` | **Required**. the URL of product to post   |
 
 ---
 
@@ -390,3 +416,20 @@ DELETE /api/videos/${videoId}/comments/${commentId}
 ---
 
 # How to Run
+
+## Prerequisites
+
+- NodeJS
+- MongoDB
+- Package Manager
+- HTTP Client
+
+## Steps
+
+1.  Clone this repository
+2.  Open cloned directory
+3.  Run mongoDB instance
+4.  Set the env variable of MongoDB url
+5.  install dependencies with `yarn install`
+6.  Run the server with `yarn start`
+7.  You can try hitting the api from the HTTP Client

@@ -40,3 +40,30 @@ export const getVideo = async (req, res) => {
     });
   }
 };
+
+export const createVideo = async (req, res) => {
+  try {
+    const video = {
+      thumbnailUrl: req.body.thumbnailUrl,
+    };
+
+    if (!video.thumbnailUrl) {
+      return res.status(400).json({
+        status: 400,
+        message: "thumbnailUrl is required",
+      });
+    }
+
+    const newVideo = await new Video(video).save();
+    res.status(200).json({
+      status: 200,
+      message: "Success",
+      data: newVideo,
+    });
+  } catch (e) {
+    res.status(500).json({
+      status: 500,
+      message: e.message,
+    });
+  }
+};
