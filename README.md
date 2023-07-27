@@ -428,8 +428,7 @@ DELETE /api/videos/${videoId}/comments/${commentId}
 
 1.  Clone this repository
 2.  Open cloned directory
-3.  Run mongoDB instance
-4.  Set the env variable of MongoDB url
-5.  install dependencies with `yarn install`
-6.  Run the server with `yarn start`
-7.  You can try hitting the api from the HTTP Client
+3.  Set the env variable of MongoDB url
+4.  install dependencies with `yarn install`
+5.  Run the server with `yarn start`
+6.  You can try hitting the api from the HTTP Client
