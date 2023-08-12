@@ -1,19 +1,21 @@
 import * as React from "react";
-// import Card from "@mui/material/Card";
-// import CardActions from "@mui/material/CardActions";
-// import CardContent from "@mui/material/CardContent";
-// import CardMedia from "@mui/material/CardMedia";
-// import Button from "@mui/material/Button";
+
 import Typography from "@mui/material/Typography";
-import { Box, Grid, Skeleton } from "@mui/material";
+import { Box, Grid, Link, Skeleton } from "@mui/material";
+import { green } from "@mui/material/colors";
 
 export default function VideoCard({ loading, data }) {
   return (
-    //
-    <Grid container gap={3}>
+    <Grid container gap={2}>
       {data.map((item, index) => (
         <Box key={index} sx={{ width: 210, marginRight: 0.5, my: 5 }}>
-          {loading ? <Skeleton variant="rectangular" width={210} height={118} /> : <img style={{ width: 210, height: 118 }} alt={item.title} src={item.src} />}
+          {loading ? (
+            <Skeleton variant="rectangular" width={210} height={118} />
+          ) : (
+            <Link href={`/${item.id}`}>
+              <img style={{ width: 210, height: 118 }} alt={item.title} src={item.src} />
+            </Link>
+          )}
           {loading ? (
             <Box sx={{ pt: 0.5 }}>
               <Skeleton />
@@ -21,9 +23,9 @@ export default function VideoCard({ loading, data }) {
             </Box>
           ) : (
             <Box sx={{ pr: 2 }}>
-              <Typography gutterBottom variant="body2">
+              <Link href={`/${item.id}`} color={"inherit"} underline="none" gutterBottom variant="body2" sx={{ ":hover": { color: green[600] } }}>
                 {item.title}
-              </Typography>
+              </Link>
               <Typography display="block" variant="caption" color="#c2c2c2">
                 {item.channel}
               </Typography>
