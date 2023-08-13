@@ -7,8 +7,6 @@ import cors from "cors";
 
 const app = express();
 
-app.use(cors());
-
 mongoose.connect(process.env.MONGO_URL).catch((error) => handleError(error));
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
@@ -18,6 +16,8 @@ db.once("open", () => {
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+app.use(cors());
 
 app.use("/api", router);
 
