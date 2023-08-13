@@ -1,7 +1,6 @@
-import { Avatar, Box, Paper, Stack, Typography } from "@mui/material";
-import { green, grey } from "@mui/material/colors";
+import toast from "react-hot-toast";
 import React, { useEffect, useState } from "react";
-import CommentForm from "../../UI/CommentForm/CommentForm";
+import CommentBubble from "../CommentBubble/CommentBubble";
 
 const data = [
   {
@@ -49,20 +48,12 @@ function CommentList() {
     getComment();
   }, []);
 
+  const notify = () => toast("Comment sent");
+
   return (
     <>
       {comments.map((comment, index) => (
-        <Stack key={index} direction={"row"} alignItems={"center"} spacing={2} mb={2}>
-          <Avatar alt={comment.username} src="https://akcdn.detik.net.id/community/media/visual/2023/08/07/lionel-messi_169.jpeg?w=600&q=90" />
-          <Box>
-            <Typography variant="body1" color={green[500]}>
-              {comment.username}
-            </Typography>
-            <Typography variant="body2" color={grey[400]}>
-              {comment.comment}
-            </Typography>
-          </Box>
-        </Stack>
+        <CommentBubble key={index} comment={comment} />
       ))}
     </>
   );

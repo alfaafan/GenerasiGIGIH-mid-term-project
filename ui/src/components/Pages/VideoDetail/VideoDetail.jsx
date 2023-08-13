@@ -5,6 +5,7 @@ import VideoPlayer from "../../Common/VideoPlayer/VideoPlayer";
 import CommentList from "../../Common/CommentList/CommentList";
 import CommentForm from "../../UI/CommentForm/CommentForm";
 import { makeStyles } from "@mui/styles";
+import { useParams } from "react-router-dom";
 
 const data = ["product 1", "product 2", "product 3"];
 
@@ -21,6 +22,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 function VideoDetail() {
+  const { videoId } = useParams();
   const classes = useStyles();
   const [products, setProducts] = useState(null);
 
@@ -40,7 +42,7 @@ function VideoDetail() {
         {products && products.map((product, index) => <Paper component={ProductCard} key={index} name={product} imageSrc="https://placehold.co/600x400?text=Sample+Image" />)}
       </Grid>
       <Grid xs height="65vh">
-        <VideoPlayer embeddedYoutubeUrl="https://www.youtube.com/embed/_NfnXdXpjL0" title="Never Meant" />
+        <VideoPlayer embeddedYoutubeUrl="https://www.youtube.com/embed/FPNiZhu6Wtw" title="Myriad Celestia Trailer: The Jepella Rebellion — Scene 47 | Honkai: Star Rail" />
       </Grid>
       <Grid xs>
         <Typography variant="h5" gutterBottom textAlign={"center"}>

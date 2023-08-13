@@ -37,12 +37,13 @@ export const createVideo = async (req, res) => {
   try {
     const video = {
       title: req.body.title,
+      channel: req.body.channel,
       description: req.body.description,
       thumbnailUrl: req.body.thumbnailUrl,
       embeddedYoutubeUrl: req.body.embeddedYoutubeUrl,
     };
 
-    if (!video.thumbnailUrl || !video.title || !video.embeddedYoutubeUrl) {
+    if (!video.thumbnailUrl || !video.channel || !video.title || !video.embeddedYoutubeUrl) {
       return res.status(400).json(error("Insufficent Parameter"));
     }
 

@@ -7,6 +7,9 @@ const videoSchema = new Schema(
       type: Schema.Types.String,
       required: true,
     },
+    channel: {
+      type: Schema.Types.String,
+    },
     description: {
       type: Schema.Types.String,
     },

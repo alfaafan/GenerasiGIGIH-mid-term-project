@@ -7,15 +7,17 @@ function VideoPlayer({ embeddedYoutubeUrl, title, description }) {
       <Box>
         <iframe
           src={embeddedYoutubeUrl}
-          title={title}
+          title="YouTube video player"
           allowFullScreen
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           style={{ border: "none", width: "50rem", height: "30rem" }}
         />
       </Box>
-      <Box>
+      <Box mt={3}>
         <Typography variant="h5">{title}</Typography>
-        <Typography variant="subtitle2">{description ? description : "No description given"}</Typography>
+        <Typography variant="subtitle2" mt={2}>
+          {description ? description : "No description given"}
+        </Typography>
       </Box>
     </Container>
   );

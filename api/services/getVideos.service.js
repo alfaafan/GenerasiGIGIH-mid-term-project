@@ -53,30 +53,30 @@ export const getVideosService = async (search) => {
           $toString: "$_id",
         },
         _id: 0,
-        comments: {
-          $map: {
-            input: "$comments",
-            as: "comment",
-            in: {
-              _id: "$$comment._id",
-              username: "$$comment.username",
-              comment: "$$comment.comment",
-              timestamp: "$$comment.timestamp",
-            },
-          },
-        },
-        products: {
-          $map: {
-            input: "$products",
-            as: "product",
-            in: {
-              _id: "$$product._id",
-              title: "$$product.title",
-              price: "$$product.price",
-              productUrl: "$$product.productUrl",
-            },
-          },
-        },
+        // comments: {
+        //   $map: {
+        //     input: "$comments",
+        //     as: "comment",
+        //     in: {
+        //       _id: "$$comment._id",
+        //       username: "$$comment.username",
+        //       comment: "$$comment.comment",
+        //       timestamp: "$$comment.timestamp",
+        //     },
+        //   },
+        // },
+        // products: {
+        //   $map: {
+        //     input: "$products",
+        //     as: "product",
+        //     in: {
+        //       _id: "$$product._id",
+        //       title: "$$product.title",
+        //       price: "$$product.price",
+        //       productUrl: "$$product.productUrl",
+        //     },
+        //   },
+        // },
       },
     },
   ]);
