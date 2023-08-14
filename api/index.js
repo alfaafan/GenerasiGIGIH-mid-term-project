@@ -1,7 +1,7 @@
 import "dotenv/config.js";
 import express from "express";
 import mongoose from "mongoose";
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 import router from "./routes/index.js";
 import cors from "cors";
 
