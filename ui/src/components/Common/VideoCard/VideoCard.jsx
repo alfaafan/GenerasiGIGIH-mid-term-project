@@ -20,7 +20,7 @@ export default function VideoCard({ loading, video }) {
           <Link href={`/${video.id}`}>
             <img style={{ width: 320, height: 180 }} alt={video.title} src={video.thumbnailUrl} />
           </Link>
-          <Grid sx={{ pr: 2 }}>
+          <Grid sx={{ pr: 2, width: 320 }}>
             <Link href={`/${video.id}`} color={"inherit"} underline="none" gutterBottom variant="body1" sx={{ ":hover": { color: green[600] } }}>
               {video.title || "No Title"}
             </Link>

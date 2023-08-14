@@ -8,7 +8,7 @@ export const getAllVideos = async (req, res) => {
   try {
     const videos = await getVideosService(req.query.search);
 
-    if (!videos) {
+    if (videos.length === 0) {
       return res.status(404).json(error("Videos not found"));
     }
 
@@ -44,6 +44,7 @@ export const createVideo = async (req, res) => {
     };
 
     if (!video.thumbnailUrl || !video.channel || !video.title || !video.embeddedYoutubeUrl) {
+      console.log(video);
       return res.status(400).json(error("Insufficent Parameter"));
     }
 

@@ -1,34 +1,13 @@
 import { Alert, Button, FormControl, Snackbar, Stack, TextField } from "@mui/material";
-import { green } from "@mui/material/colors";
-import { styled } from "@mui/styles";
 import React, { useState } from "react";
-import { Toaster, toast } from "react-hot-toast";
+import { TextFieldGreen } from "../../Common/TextFieldGreen/TextFieldGreen";
+import { useCommentForm } from "../../../hooks/useCommentForm";
+import { useParams } from "react-router-dom";
+import { useLoading } from "../../../hooks/useLoading";
 
-function CommentForm() {
+function CommentForm({ username, setUsername, comment, setComment, handleSubmit }) {
   const [open, setOpen] = useState(false);
-  const CommentField = styled(TextField)({
-    "& label.MuiInputLabel-root": {
-      color: green[600],
-    },
-    "& label.Mui-focused": {
-      color: green[600],
-    },
-    "& .MuiInput-underline:after": {
-      borderBottomColor: "#B2BAC2",
-    },
-    "& .MuiOutlinedInput-root": {
-      "& fieldset": {
-        borderColor: green[600],
-      },
-      "&:hover fieldset": {
-        borderColor: green[600],
-      },
-      "&.Mui-focused fieldset": {
-        borderColor: green[600],
-      },
-      color: green[50],
-    },
-  });
+  const { videoId } = useParams();
 
   const notify = () => {
     setOpen(true);
@@ -42,13 +21,18 @@ function CommentForm() {
   };
 
   return (
-    <Stack component="form" direction={"row"} spacing={1}>
+    <Stack component="form" spacing={1} onSubmit={handleSubmit}>
       <FormControl>
-        <CommentField label="Comment" id="comment" />
+        <TextFieldGreen label="Username" id="username" value={username} onChange={(e) => setUsername(e.target.value)} />
       </FormControl>
-      <Button variant="contained" color="success" onClick={notify}>
-        Send
-      </Button>
+      <Stack direction={"row"} spacing={1} justifyContent={"space-between"}>
+        <FormControl>
+          <TextFieldGreen label="Comment" id="comment" value={comment} onChange={(e) => setComment(e.target.value)} />
+        </FormControl>
+        <Button variant="contained" color="success" type="submit" onClick={notify}>
+          Send
+        </Button>
+      </Stack>
       <Snackbar open={open} onClose={handleClose} autoHideDuration={3000} anchorOrigin={{ vertical: "bottom", horizontal: "right" }}>
         <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
           Comment sent

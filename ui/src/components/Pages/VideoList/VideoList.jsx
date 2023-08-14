@@ -3,6 +3,7 @@ import { Button, Container, Grid, Stack } from "@mui/material";
 import "./VideoList.css";
 import VideoCard from "../../Common/VideoCard/VideoCard";
 import { useVideoList } from "../../../hooks/useVideoList";
+import { useLoading } from "../../../hooks/useLoading";
 
 // const data = [
 //   {
@@ -80,7 +81,8 @@ import { useVideoList } from "../../../hooks/useVideoList";
 // ];
 
 function VideoList() {
-  const { videoList, loading } = useVideoList();
+  const { videoList } = useVideoList();
+  const { loading } = useLoading();
   const pages = ["Home", "Recommendations"];
   const [activeButton, setActiveButton] = useState("Home");
 

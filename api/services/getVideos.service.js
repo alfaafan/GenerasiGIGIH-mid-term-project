@@ -47,8 +47,10 @@ export const getVideosService = async (search) => {
     {
       $project: {
         title: 1,
+        channel: 1,
         description: 1,
         thumbnailUrl: 1,
+        embeddedYoutubeUrl: 1,
         id: {
           $toString: "$_id",
         },

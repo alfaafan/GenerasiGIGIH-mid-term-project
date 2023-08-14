@@ -13,7 +13,7 @@ const commentSchema = new Schema(
     },
     timestamp: {
       type: Schema.Types.Date,
-      default: new Date(),
+      default: new Date().toISOString(),
       required: true,
     },
     video: {
