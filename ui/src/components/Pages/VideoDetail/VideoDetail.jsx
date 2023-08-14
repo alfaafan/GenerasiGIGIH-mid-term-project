@@ -13,12 +13,12 @@ import { useCommentForm } from "../../../hooks/useCommentForm";
 
 const useStyles = makeStyles(() => ({
   root: {
-    overflow: "auto", // Enable scrolling
+    overflow: "auto",
     "&::-webkit-scrollbar": {
-      width: "0.4em", // Set the width of the scrollbar
+      width: "0.4em",
     },
     "&::-webkit-scrollbar-thumb": {
-      backgroundColor: "transparent", // Hide the thumb
+      backgroundColor: "transparent",
     },
   },
 }));

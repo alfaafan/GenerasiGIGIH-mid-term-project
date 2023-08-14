@@ -1,13 +1,9 @@
-import { Alert, Button, FormControl, Snackbar, Stack, TextField } from "@mui/material";
+import { Alert, Button, FormControl, Snackbar, Stack } from "@mui/material";
 import React, { useState } from "react";
 import { TextFieldGreen } from "../../Common/TextFieldGreen/TextFieldGreen";
-import { useCommentForm } from "../../../hooks/useCommentForm";
-import { useParams } from "react-router-dom";
-import { useLoading } from "../../../hooks/useLoading";
 
 function CommentForm({ username, setUsername, comment, setComment, handleSubmit }) {
   const [open, setOpen] = useState(false);
-  const { videoId } = useParams();
 
   const notify = () => {
     setOpen(true);

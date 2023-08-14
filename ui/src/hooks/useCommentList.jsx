@@ -6,7 +6,6 @@ import { BASE_API_URL } from "../utils/api";
 export const useCommentList = (videoId) => {
   const [commentList, setCommentList] = useState([]);
   const { setLoading } = useLoading();
-  const video = videoId;
 
   const getCommentList = async (videoId) => {
     try {
