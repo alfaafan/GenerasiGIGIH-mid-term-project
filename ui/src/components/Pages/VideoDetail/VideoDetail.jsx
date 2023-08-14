@@ -6,8 +6,7 @@ import CommentList from "../../Common/CommentList/CommentList";
 import CommentForm from "../../UI/CommentForm/CommentForm";
 import { makeStyles } from "@mui/styles";
 import { useParams } from "react-router-dom";
-
-const data = ["product 1", "product 2", "product 3"];
+import { useProductList } from "../../../hooks/useProductList";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -24,39 +23,30 @@ const useStyles = makeStyles(() => ({
 function VideoDetail() {
   const { videoId } = useParams();
   const classes = useStyles();
-  const [products, setProducts] = useState(null);
-
-  const getProducts = () => {
-    setProducts(data);
-  };
-
-  useEffect(() => {
-    getProducts();
-  }, []);
+  const { productList, loading } = useProductList(videoId);
+  console.log(productList);
 
   return (
-    // <Container>
     <Grid container direction={"row"} marginTop={3} paddingX={2} wrap="nowrap">
       {/* nanti set skeleton dulu */}
-      <Grid container className={classes.root} xs height="85vh">
-        {products && products.map((product, index) => <Paper component={ProductCard} key={index} name={product} imageSrc="https://placehold.co/600x400?text=Sample+Image" />)}
+      <Grid item xs={12} sm={6} md={2.5} className={classes.root} height="85vh">
+        <Grid container>{productList && productList.map((product, index) => <Paper component={ProductCard} key={index} name={product.title} imageSrc="https://placehold.co/600x400?text=Sample+Image" />)}</Grid>
       </Grid>
-      <Grid xs height="65vh">
+      <Grid item xs={12} sm={6} md={6.5} height="65vh">
         <VideoPlayer embeddedYoutubeUrl="https://www.youtube.com/embed/FPNiZhu6Wtw" title="Myriad Celestia Trailer: The Jepella Rebellion — Scene 47 | Honkai: Star Rail" />
       </Grid>
-      <Grid xs>
+      <Grid item xs={12} sm={6} md={3}>
         <Typography variant="h5" gutterBottom textAlign={"center"}>
           Comments
         </Typography>
-        <Grid className={classes.root} xs height="65vh" p={3}>
+        <Grid item className={classes.root} xs height="65vh" p={3}>
           <CommentList />
         </Grid>
-        <Grid xs p={3}>
+        <Grid item xs p={3}>
           <CommentForm />
         </Grid>
       </Grid>
     </Grid>
-    // </Container>
   );
 }
 

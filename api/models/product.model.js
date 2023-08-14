@@ -12,7 +12,11 @@ const productSchema = new Schema(
       required: true,
       min: 0,
     },
-    productUrl: {
+    img: {
+      type: Schema.Types.String,
+      required: true,
+    },
+    link: {
       type: Schema.Types.String,
       required: true,
     },

@@ -3,15 +3,15 @@ import { useLoading } from "./useLoading";
 import axios from "axios";
 import { BASE_API_URL } from "../utils/api";
 
-export const useProductList = (videoId) => {
-  const [productList, setProductList] = useState([]);
+const useCommentList = (videoId) => {
+  const [commentList, setCommentList] = useState();
   const { loading, setLoading } = useLoading();
 
-  const getProducts = async (videoId) => {
+  const getCommentList = async (videoId) => {
     try {
       setLoading(true);
-      const response = await axios.get(`${BASE_API_URL}/api/videos/${videoId}/products`);
-      setProductList(response.data.data);
+      const response = await axios.get(`${BASE_API_URL}/api/videos/${videoId}/comments`);
+      setCommentList(response.data.data);
       setLoading(false);
     } catch (e) {
       console.error(e.message);
@@ -19,8 +19,8 @@ export const useProductList = (videoId) => {
   };
 
   useEffect(() => {
-    getProducts(videoId);
+    getCommentList();
   }, []);
 
-  return { productList, loading };
+  return { commentList, loading };
 };

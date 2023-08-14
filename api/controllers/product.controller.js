@@ -8,7 +8,6 @@ export const getAllProducts = async (req, res) => {
   try {
     const videoId = req.params.videoId;
     const products = await getProductsService(videoId);
-    console.log(products);
 
     res.status(200).json(success("Products retrieved", products));
   } catch (e) {
@@ -36,12 +35,13 @@ export const createProduct = async (req, res) => {
     const product = {
       title: req.body.title,
       price: req.body.price,
-      productUrl: req.body.productUrl,
+      img: req.body.img,
+      link: req.body.link,
       video: req.params.videoId,
     };
 
-    if (!product.title || !product.price || !product.productUrl || !product.video) {
-      return res.status(400).json(error("title, price, and thumbnailUrl, videoId are required"));
+    if (!product.title || !product.price || !product.img || product.link || !product.video) {
+      return res.status(400).json(error("title, price, img, link, videoId are required"));
     }
 
     const newProduct = await createProductService(product);

@@ -80,8 +80,6 @@ import { useVideoList } from "../../../hooks/useVideoList";
 // ];
 
 function VideoList() {
-  // const [loading, setLoading] = useState(true);
-  // const [video, setVideo] = useState([]);
   const { videoList, loading } = useVideoList();
   const pages = ["Home", "Recommendations"];
   const [activeButton, setActiveButton] = useState("Home");
@@ -89,19 +87,6 @@ function VideoList() {
   const handleButtonClick = (button) => {
     setActiveButton(button);
   };
-
-  // const fetchData = () => {
-  //   setVideo(data);
-  //   setLoading(false);
-  // };
-
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     fetchData();
-  //   }, 2000);
-  // }, []);
-
-  console.log(videoList);
 
   return (
     <>
