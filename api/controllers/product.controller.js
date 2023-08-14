@@ -40,9 +40,10 @@ export const createProduct = async (req, res) => {
       video: req.params.videoId,
     };
 
-    if (!product.title || !product.price || !product.img || product.link || !product.video) {
-      return res.status(400).json(error("title, price, img, link, videoId are required"));
-    }
+    // if (!product.title || !product.price || !product.img || product.link || !product.video) {
+    //   console.log(product);
+    //   return res.status(400).json(error("title, price, img, link, videoId are required"));
+    // }
 
     const newProduct = await createProductService(product);
     res.status(201).json(success("Product created", newProduct));

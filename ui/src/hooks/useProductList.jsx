@@ -5,7 +5,7 @@ import { BASE_API_URL } from "../utils/api";
 
 export const useProductList = (videoId) => {
   const [productList, setProductList] = useState([]);
-  const { loading, setLoading } = useLoading();
+  const { setLoading } = useLoading();
 
   const getProducts = async (videoId) => {
     try {
@@ -22,5 +22,5 @@ export const useProductList = (videoId) => {
     getProducts(videoId);
   }, []);
 
-  return { productList, loading };
+  return { productList };
 };

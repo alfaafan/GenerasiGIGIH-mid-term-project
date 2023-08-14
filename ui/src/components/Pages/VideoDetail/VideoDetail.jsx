@@ -23,14 +23,13 @@ const useStyles = makeStyles(() => ({
 function VideoDetail() {
   const { videoId } = useParams();
   const classes = useStyles();
-  const { productList, loading } = useProductList(videoId);
-  console.log(productList);
+  const { productList } = useProductList(videoId);
 
   return (
     <Grid container direction={"row"} marginTop={3} paddingX={2} wrap="nowrap">
       {/* nanti set skeleton dulu */}
       <Grid item xs={12} sm={6} md={2.5} className={classes.root} height="85vh">
-        <Grid container>{productList && productList.map((product, index) => <Paper component={ProductCard} key={index} name={product.title} imageSrc="https://placehold.co/600x400?text=Sample+Image" />)}</Grid>
+        <Grid container>{productList && productList.map((product, index) => <Paper component={ProductCard} key={index} title={product.title} price={product.price} imageSrc={product.img} link={product.link} />)}</Grid>
       </Grid>
       <Grid item xs={12} sm={6} md={6.5} height="65vh">
         <VideoPlayer embeddedYoutubeUrl="https://www.youtube.com/embed/FPNiZhu6Wtw" title="Myriad Celestia Trailer: The Jepella Rebellion — Scene 47 | Honkai: Star Rail" />

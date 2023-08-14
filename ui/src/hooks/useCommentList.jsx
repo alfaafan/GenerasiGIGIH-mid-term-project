@@ -3,15 +3,16 @@ import { useLoading } from "./useLoading";
 import axios from "axios";
 import { BASE_API_URL } from "../utils/api";
 
-const useCommentList = (videoId) => {
-  const [commentList, setCommentList] = useState();
-  const { loading, setLoading } = useLoading();
+export const useCommentList = (videoId) => {
+  const [commentList, setCommentList] = useState([]);
+  const { setLoading } = useLoading();
 
   const getCommentList = async (videoId) => {
     try {
       setLoading(true);
       const response = await axios.get(`${BASE_API_URL}/api/videos/${videoId}/comments`);
       setCommentList(response.data.data);
+      console.log(commentList);
       setLoading(false);
     } catch (e) {
       console.error(e.message);
@@ -19,8 +20,8 @@ const useCommentList = (videoId) => {
   };
 
   useEffect(() => {
-    getCommentList();
+    getCommentList(videoId);
   }, []);
 
-  return { commentList, loading };
+  return { commentList };
 };
