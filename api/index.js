@@ -1,7 +1,7 @@
 import "dotenv/config.js";
 import express from "express";
 import mongoose from "mongoose";
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 import router from "./routes/index.js";
 import cors from "cors";
 
@@ -24,6 +24,6 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/api", router);
 
-app.listen(port, "0.0.0.0:3000", () => {
+app.listen(port, () => {
   console.log(`Server listening at port ${port}`);
 });
