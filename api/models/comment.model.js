@@ -33,7 +33,7 @@ const commentSchema = new Schema(
 );
 
 commentSchema.set("versionKey", "version");
-commentSchema.set("bufferCommands", false);
+// commentSchema.set("bufferCommands", false);
 commentSchema.statics.build = function (attrs) {
   return new Comment(attrs);
 };

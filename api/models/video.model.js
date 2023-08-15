@@ -44,6 +44,6 @@ const videoSchema = new Schema(
   }
 );
 
-videoSchema.set("bufferCommands", false);
+// videoSchema.set("bufferCommands", false);
 const Video = model("videos", videoSchema);
 export default Video;

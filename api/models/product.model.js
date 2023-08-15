@@ -37,7 +37,7 @@ const productSchema = new Schema(
 );
 
 productSchema.set("versionKey", "version");
-productSchema.set("bufferCommands", false);
+// productSchema.set("bufferCommands", false);
 productSchema.statics.build = function (attrs) {
   return new Product(attrs);
 };
