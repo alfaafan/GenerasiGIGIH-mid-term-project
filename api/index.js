@@ -9,23 +9,23 @@ const app = express();
 
 app.use(cors());
 
-mongoose.connect(process.env.MONGO_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-
-const db = mongoose.connection;
-
-db.on("error", console.error.bind(console, "MongoDB connection error:"));
-db.once("open", () => {
-  console.log("Connected to MongoDB Atlas");
-});
+const connectDB = async () => {
+  try {
+    const conn = await mongoose.connect(process.env.MONGO_URL);
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
+  }
+};
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use("/api", router);
 
-app.listen(port, "0.0.0.0", () => {
-  console.log(`Server listening at port ${port}`);
+connectDB().then(() => {
+  app.listen(port, "0.0.0.0", () => {
+    console.log(`app listening in port ${port}`);
+  });
 });
