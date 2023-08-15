@@ -9,15 +9,17 @@ const app = express();
 
 app.use(cors());
 
-const connectDB = async () => {
-  try {
-    await mongoose.connect(process.env.MONGO_URL);
-    console.log(`MongoDB Connected`);
-  } catch (error) {
-    console.log(error);
-    process.exit(1);
-  }
-};
+mongoose.connect(process.env.MONGO_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+const db = mongoose.connection;
+
+db.on("error", console.error.bind(console, "MongoDB connection error:"));
+db.once("open", () => {
+  console.log("Connected to MongoDB Atlas");
+});
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
